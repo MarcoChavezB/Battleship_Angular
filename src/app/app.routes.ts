@@ -13,7 +13,7 @@ export const routes: Routes = [
                 component: MenuComponent,
                 children: [
                     {
-                        path: '',
+                        path: 'menu',
                         component: HomeComponent
                     }
                 ]
