@@ -1,7 +1,8 @@
 import { Injectable, PLATFORM_ID, Inject } from '@angular/core';
 import Echo from 'laravel-echo';
 import { isPlatformBrowser } from '@angular/common';
-import {environment} from "../../../environments/environments";
+import {environment} from "@environments/environments";
+import {HttpClient} from "@angular/common/http";
 declare global {
   interface Window {
     Echo: Echo | undefined;
@@ -13,10 +14,16 @@ declare global {
   providedIn: 'root'
 })
 export class EchoService {
+
+  private testURL ="http://127.0.0.1:8000/api/sendevent"
+
   private echo?: Echo;
 
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private http: HttpClient
+  ) {
     if (isPlatformBrowser(this.platformId)) {
       this.initializeEcho();
     }
@@ -51,10 +58,14 @@ export class EchoService {
   }
 
   public listentest(callback: (e: any) => void) {
-    this.echo?.channel('lolchannel').listen('.lolevent', (e: any) => {
+    this.echo?.channel('lol').listen('.lol', (e: any) => {
       callback(e);
     });
   }
+
+testEndpoint(){
+    return this.http.post(this.testURL, {})
+}
 
 
 }
