@@ -29,4 +29,8 @@ export class GameInstanceService {
     return this.http.post<any>(environment.dequeueGameURL, {gameId: localStorage.getItem('gameId')});
   }
 
+  cancelRandomQueue(): Observable<any> {
+    return this.http.post<any>(environment.cancelRandomQueueURL, {player_id: 2});
+  }
+
 }

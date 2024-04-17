@@ -8,6 +8,7 @@ production: false,
   joinRandomGameURL: `${baseURL}/game/join/random`,
   endGameURL: `${baseURL}/game/end`,
   dequeueGameURL: `${baseURL}/game/dequeue`,
+  cancelRandomQueueURL: `${baseURL}/game/cancel/random`,
 
   pusher: {
     key: '6f9207431644381a1fb9',

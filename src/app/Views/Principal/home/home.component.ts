@@ -14,8 +14,9 @@ import {GameInstanceService} from "@services/GameInstance/game-instance.service"
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  test: Boolean = false;
-  test2: Boolean = false;
+  load1: Boolean = false;
+  load2: Boolean = false;
+  joiningGame: Boolean = false;
 
   constructor(
     private gameInstanceService: GameInstanceService,
@@ -34,7 +35,7 @@ export class HomeComponent {
   }
 
   startQueue() {
-    this.test = true;
+    this.load1 = true;
     this.gameInstanceService.startQueue().subscribe(
       data => {
         localStorage.setItem('gameId', data.gameId);
@@ -45,28 +46,46 @@ export class HomeComponent {
   }
 
   joinRandomGame() {
-    this.test2 = true;
+    this.load2 = true;
+    this.joiningGame = true;
+    this.tryJoinRandomGame();
+  }
+
+  tryJoinRandomGame() {
+    if (!this.joiningGame) {
+      return;
+    }
     this.gameInstanceService.joinRandomGame().subscribe(
       data => {
         console.log('Joined game:', data);
         localStorage.setItem('gameId', data.gameId);
+        if (!data.game_found) {
+          setTimeout(() => {
+            this.tryJoinRandomGame();
+          }, 2500);
+        }
       },
-      err =>{
-
+      err => {
+        if (err.error.game_found == false) {
+          setTimeout(() => {
+            this.tryJoinRandomGame();
+          }, 2500);
+        }
       }
     );
   }
 
   @HostListener('window:keydown', ['$event'])
   handleKeyDown(event: KeyboardEvent) {
-    if (event.key === 'Escape' && this.test) {
-      this.test = false;
+    if (event.key === 'Escape' && this.load1) {
+      this.load1 = false;
       this.gameInstanceService.dequeueGame().subscribe(data => {
         console.log('Dequeued game:', data);
         localStorage.removeItem('gameId');
       });
-    }else if (event.key === 'Escape' && this.test2) {
-      this.test2 = false;
+    }else if (event.key === 'Escape' && this.load2) {
+      this.load2 = false;
+      this.joiningGame = false;
     }
   }
 }
