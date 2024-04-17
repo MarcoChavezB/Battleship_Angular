@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {EchoService} from "../../../Services/EchoService/echo.service";
+import {EchoService} from "@services/EchoService/echo.service";
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -12,11 +12,16 @@ export class HomeComponent {
   constructor(private echoService: EchoService) {}
 
   ngOnInit() {
-    console.log('Listening to test-channel');
-
     this.echoService.listentest( (data) => {
       console.log("AAAAAAAAAAAA", data);
     });
+    console.log('Listening to test-channel');
+
+    this.echoService.testEndpoint().subscribe((data) => {
+      console.log('Data from testEndpoint:', data);
+    });
+
+
 
     console.log('EHHH');
   }
