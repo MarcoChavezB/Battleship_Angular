@@ -1,5 +1,29 @@
-import { CanActivateFn } from '@angular/router';
+import { Injectable } from '@angular/core';
+import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import {AuthService} from "@services/AuthService/auth.service";
+import { Observable, map, catchError, of } from 'rxjs';
 
-export const desauthGuard: CanActivateFn = (route, state) => {
-  return true;
-};
+@Injectable({
+  providedIn: 'root'
+})
+export class DesauthGuard implements CanActivate {
+  constructor(private authService: AuthService, private router: Router) {}
+
+  canActivate(
+    next: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+    return this.authService.isAuthenticated().pipe(
+      map(e => {
+          const isAuthenticated = !!e;
+          if (isAuthenticated){
+            this.router.navigate(['/menu']);
+          }
+          return !isAuthenticated;
+        }
+      ),
+      catchError(() => {
+        return of(false);
+      })
+    );
+  }
+}

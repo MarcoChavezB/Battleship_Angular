@@ -9,6 +9,8 @@ export const environment = {
   cancelRandomQueueURL: `${baseURL}/game/cancel/random`,
   loginURL: `${baseURL}/user/login`,
   logoutURL: `${baseURL}/user/logout`,
+  authenticateURL : `${baseURL}/authenticatetoken`,
+
 
   pusher: {
     key: '6f9207431644381a1fb9',

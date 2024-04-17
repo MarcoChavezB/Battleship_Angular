@@ -4,6 +4,7 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/
 import {UserLoginCode} from "@models/User";
 import {UserService} from "@services/UserServices/user.service";
 import {AuthService} from "@services/AuthService/auth.service";
+import {Router} from "@angular/router";
 @Component({
   selector: 'app-code',
   standalone: true,
@@ -17,7 +18,8 @@ import {AuthService} from "@services/AuthService/auth.service";
 export class CodeComponent {
   constructor(
     private readonly userService: UserService,
-    private readonly authService: AuthService
+    private readonly authService: AuthService,
+    private readonly router: Router
   ) { }
 
   submitting = false;
@@ -47,7 +49,9 @@ export class CodeComponent {
         this.submitting = false;
         setTimeout(() => {
           this.authService.saveTokenResponse(res.jwt, res.data)
+          this.router.navigate(['/menu'])
         }, 50)
+
       },
       err => {
         this.submitting = false;

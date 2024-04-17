@@ -21,4 +21,8 @@ export class UserService {
     return this.http.get<statusInterface>(environment.logoutURL)
   }
 
+  authenticate(): Observable<statusInterface> {
+    return this.http.get<statusInterface>(environment.authenticateURL)
+  }
+
 }

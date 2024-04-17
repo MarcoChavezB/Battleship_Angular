@@ -7,10 +7,49 @@ import { LoginComponent } from './Views/Auth/login/login.component';
 import { CodeComponent } from './Views/Auth/code/code.component';
 import { RegisterComponent } from './Views/Auth/register/register.component';
 import { JuegoComponent } from './Views/Principal/juego/juego.component';
+import {DesauthGuard} from "@guards/DesauthGuard/desauth.guard";
+import {AuthGuard} from "@guards/AuthGuard/auth.guard";
 
 
 export const routes: Routes = [
   {
+    path: '',
+    component: AppComponent,
+    canActivate: [DesauthGuard],
+    children:[
+      {
+        path: '',
+        component: LoginComponent
+      },
+      {
+        path: 'register',
+        component: RegisterComponent
+      }
+    ]
+  },
+  {
+    path: '',
+    component: MenuComponent,
+    canActivate: [AuthGuard],
+    children:[
+      {
+        path: 'menu',
+        component: HomeComponent
+      }
+    ]
+  },
+  {
+    path: 'mark',
+    component: MenuComponent,
+    children:[
+      {
+        path: 'game',
+        component: JuegoComponent
+      }
+    ]
+  }
+
+  /*{
     path: '',
     component: AppComponent,
     children:[
@@ -50,12 +89,12 @@ export const routes: Routes = [
                     },
                     {
                         path: 'game',
-                        component: JuegoComponent                        
+                        component: JuegoComponent
                     }
                 ]
             }
         ]
       }
     ]
-  }
+  }*/
 ];
