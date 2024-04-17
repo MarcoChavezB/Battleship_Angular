@@ -1,7 +1,7 @@
 import { Injectable, PLATFORM_ID, Inject } from '@angular/core';
 import Echo from 'laravel-echo';
 import { isPlatformBrowser } from '@angular/common';
-import {environment} from "../../../environments/environments";
+import {environment} from "@environments/environments";
 import {HttpClient} from "@angular/common/http";
 declare global {
   interface Window {
@@ -58,7 +58,7 @@ export class EchoService {
   }
 
   public listentest(callback: (e: any) => void) {
-    this.echo?.channel('lolchannel').listen('.lolevent', (e: any) => {
+    this.echo?.channel('.*').listen('.*', (e: any) => {
       callback(e);
     });
   }

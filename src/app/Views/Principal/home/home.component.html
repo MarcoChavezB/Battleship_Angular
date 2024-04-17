@@ -1,4 +1,5 @@
-<app-loader-type-one *ngIf="false"/>
+<app-loader-type-one *ngIf="test" text="Buscando rival... <Esc> para cancelar."/>
+<app-loader-type-one *ngIf="test2" text="Buscando partida... <Esc> para cancelar."/>
 <div class="header">
     <div class="options">
         <div class="inner-header">
@@ -8,13 +9,13 @@
             </div>
             <form action="" class="flex justify-center items-center flex-col gap-2 h-full">
                 <div class="btn-contain">
-                    <button>
+                    <button (click)="startQueue()" type="button">
                         <span>Crear partida</span>
                     </button>
                 </div>
                 <div class="btn-contain">
-                    <button>
-                        <span>buscar una partida</span>
+                    <button (click)="joinRandomGame()" type="button">
+                        <span>Buscar una partida</span>
                     </button>
                 </div>
                 <div class="btn-contain">

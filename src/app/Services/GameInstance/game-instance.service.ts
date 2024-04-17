@@ -8,25 +8,25 @@ import {Observable} from "rxjs";
 })
 export class GameInstanceService {
 
-  private queueGameURL = environment.queueGameURL;
-  private joinRandomGameURL = environment.joinRandomGameURL;
-  private endGameURL = environment.endGameURL;
-
   constructor(
     private http: HttpClient
   ) {
   }
 
-  queueGame(): Observable<any> {
-    return this.http.post<any>(this.queueGameURL, {});
+  startQueue(): Observable<any> {
+    return this.http.post<any>(environment.queueGameURL, {player1_id: 1});
   }
 
   joinRandomGame(): Observable<any> {
-    return this.http.put<any>(this.joinRandomGameURL, {});
+    return this.http.put<any>(environment.joinRandomGameURL, {player2_id: 2});
   }
 
   endGame(): Observable<any> {
-    return this.http.put<any>(this.endGameURL, {});
+    return this.http.put<any>(environment.endGameURL, {});
+  }
+
+  dequeueGame(): Observable<any> {
+    return this.http.post<any>(environment.dequeueGameURL, {gameId: localStorage.getItem('gameId')});
   }
 
 }
