@@ -18,6 +18,9 @@
       "@interceptors/*": [
         "./src/app/Interceptors/*"
       ],
+      "@guards/*": [
+        "./src/app/Guards/*"
+      ],
     },
     "outDir": "./dist/out-tsc",
     "strict": true,

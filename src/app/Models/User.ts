@@ -18,3 +18,9 @@ export interface LoginResponseInterface {
   data: UserData;
   jwt: string;
 }
+
+export interface UserLoginCode{
+  email: string;
+  password: string;
+  codigo: string;
+}

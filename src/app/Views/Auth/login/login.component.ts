@@ -4,6 +4,7 @@ import {Router, RouterLink} from '@angular/router';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {UserLogin} from "@models/User";
 import {UserService} from "@services/UserServices/user.service";
+import {CodeComponent} from "../code/code.component";
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,8 @@ import {UserService} from "@services/UserServices/user.service";
   imports: [
     CommonModule,
     RouterLink,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CodeComponent
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
@@ -19,6 +21,9 @@ import {UserService} from "@services/UserServices/user.service";
 export class LoginComponent {
 
   submitting = false;
+  verifyCodeView = false;
+  email = ''
+  password = ''
 
   constructor(
     private readonly userService: UserService,
@@ -39,8 +44,22 @@ export class LoginComponent {
 
     this.userService.login(form).subscribe(
       data => {
+        this.email = form.email
+        this.password = form.password
+        this.submitting = false;
+        this.verifyCodeView = true;
         console.log(data)
-        this.router.navigate(['/menu'])
+      },
+      err => {
+        this.submitting = false;
+        if (err.error.errors){
+        }else if(err.status == 401){
+          console.log('Usuario o contraseña incorrectos')
+        }else if(err.status == 403){
+          console.log('Usuario no verificado')
+        }else if (err.status == 404) {
+          console.log('Usuario no encontrado')
+        }
       }
     )
   }
