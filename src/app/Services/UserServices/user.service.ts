@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {UserLogin, statusInterface} from "@models/User";
+import {UserLogin, statusInterface, LoginResponseInterface} from "@models/User";
 import {environment} from "@environments/environments";
 import {Observable} from "rxjs";
 
@@ -13,8 +13,8 @@ export class UserService {
     private readonly http: HttpClient
   ) { }
 
-  login(data: UserLogin){
-    return this.http.post<UserLogin>(environment.loginURL, data)
+  login(data: UserLogin): Observable<LoginResponseInterface>{
+    return this.http.post<LoginResponseInterface>(environment.loginURL, data)
   }
 
   logoutuser(): Observable<statusInterface>{
