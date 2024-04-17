@@ -10,10 +10,18 @@ import { JuegoComponent } from './Views/Principal/juego/juego.component';
 
 
 export const routes: Routes = [
-    {
+  {
+    path: '',
+    component: AppComponent,
+    children:[
+      {
         path: '',
-        component: AppComponent,
-        children:[
+        component: MenuComponent,
+        children: [
+          {
+            path: 'menu',
+            component: HomeComponent
+          },
             {
                 path: '',
                 component: AuthComponent,
@@ -47,5 +55,7 @@ export const routes: Routes = [
                 ]
             }
         ]
-    }
+      }
+    ]
+  }
 ];
