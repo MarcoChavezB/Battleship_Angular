@@ -12,8 +12,12 @@ export class HomeComponent {
   constructor(private echoService: EchoService) {}
 
   ngOnInit() {
-    this.echoService.listen('test-channel', 'test-event', (data: any) => {
-      console.log(data);
+    console.log('Listening to test-channel');
+
+    this.echoService.listentest( (data) => {
+      console.log("AAAAAAAAAAAA", data);
     });
+
+    console.log('EHHH');
   }
 }

@@ -4,20 +4,20 @@ import { HomeComponent } from './Views/Principal/home/home.component';
 import { MenuComponent } from './Layouts/Principal/menu/menu.component';
 
 export const routes: Routes = [
-    {
+  {
+    path: '',
+    component: AppComponent,
+    children:[
+      {
         path: '',
-        component: AppComponent,
-        children:[
-            {
-                path: '',
-                component: MenuComponent,
-                children: [
-                    {
-                        path: 'menu',
-                        component: HomeComponent
-                    }
-                ]
-            }
+        component: MenuComponent,
+        children: [
+          {
+            path: 'menu',
+            component: HomeComponent
+          }
         ]
-    }
+      }
+    ]
+  }
 ];

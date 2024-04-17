@@ -1,6 +1,7 @@
-import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
+import { Injectable, PLATFORM_ID, Inject } from '@angular/core';
 import Echo from 'laravel-echo';
-import {isPlatformBrowser} from "@angular/common";
+import { isPlatformBrowser } from '@angular/common';
+import {environment} from "../../../environments/environments";
 declare global {
   interface Window {
     Echo: Echo | undefined;
@@ -9,10 +10,11 @@ declare global {
 }
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class EchoService {
   private echo?: Echo;
+
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
     if (isPlatformBrowser(this.platformId)) {
@@ -38,12 +40,21 @@ export class EchoService {
     });
   }
 
-
-  listen(channel: string, event: string, callback: (data: any) => void) {
+  public listen(channel: string, event: string, callback: Function): void {
     this.echo?.channel(channel).listen(event, (data: any) => {
       callback(data);
     });
   }
 
-}
+  public leaveChannel(channel: string): void {
+    this.echo?.leave(channel);
+  }
 
+  public listentest(callback: (e: any) => void) {
+    this.echo?.channel('lolchannel').listen('.lolevent', (e: any) => {
+      callback(e);
+    });
+  }
+
+
+}
