@@ -10,6 +10,7 @@ export const environment = {
   loginURL: `${baseURL}/user/login`,
   logoutURL: `${baseURL}/user/logout`,
   authenticateURL : `${baseURL}/authenticatetoken`,
+  registerURL: `${baseURL}/user/register`,
 
 
   pusher: {

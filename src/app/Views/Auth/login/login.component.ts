@@ -5,6 +5,7 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/
 import {UserLogin} from "@models/User";
 import {UserService} from "@services/UserServices/user.service";
 import {CodeComponent} from "../code/code.component";
+import {LoaderTypeOneComponent} from "@components/Loaders/loader-type-one/loader-type-one.component";
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,8 @@ import {CodeComponent} from "../code/code.component";
     CommonModule,
     RouterLink,
     ReactiveFormsModule,
-    CodeComponent
+    CodeComponent,
+    LoaderTypeOneComponent
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'

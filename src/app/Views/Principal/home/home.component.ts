@@ -4,6 +4,8 @@ import {LoaderTypeOneComponent} from "@components/Loaders/loader-type-one/loader
 import {NgIf} from "@angular/common";
 import {GameInstanceService} from "@services/GameInstance/game-instance.service";
 import {RouterLink} from "@angular/router";
+import {AuthService} from "@services/AuthService/auth.service";
+import {Router} from "@angular/router";
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -21,6 +23,8 @@ export class HomeComponent {
   joiningGame: Boolean = false;
 
   constructor(
+    private authService: AuthService,
+    private router: Router,
     private gameInstanceService: GameInstanceService,
     private echoService: EchoService) {}
 
@@ -75,6 +79,14 @@ export class HomeComponent {
         }
       }
     );
+  }
+
+  logout(){
+    this.authService.logout().then((res) => {
+      if(res){
+        this.router.navigate(['/'])
+      }
+    })
   }
 
   @HostListener('window:keydown', ['$event'])

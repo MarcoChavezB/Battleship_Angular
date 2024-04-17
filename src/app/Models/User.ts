@@ -24,3 +24,9 @@ export interface UserLoginCode{
   password: string;
   codigo: string;
 }
+
+export interface UserRegister{
+  name: string;
+  email: string;
+  password: string;
+}

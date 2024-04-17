@@ -5,13 +5,15 @@ import {UserLoginCode} from "@models/User";
 import {UserService} from "@services/UserServices/user.service";
 import {AuthService} from "@services/AuthService/auth.service";
 import {Router} from "@angular/router";
+import {LoaderTypeOneComponent} from "@components/Loaders/loader-type-one/loader-type-one.component";
 @Component({
   selector: 'app-code',
   standalone: true,
   imports: [
     CommonModule,
     ReactiveFormsModule,
-],
+    LoaderTypeOneComponent,
+  ],
   templateUrl: './code.component.html',
   styleUrl: './code.component.css'
 })
