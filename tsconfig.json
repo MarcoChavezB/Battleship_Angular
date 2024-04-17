@@ -11,6 +11,9 @@
       ],
       "@models/*": [
         "./src/app/Models/*"
+      ],
+      "@components/*": [
+        "./src/app/Components/*"
       ]
     },
     "outDir": "./dist/out-tsc",
