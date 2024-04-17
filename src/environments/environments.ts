@@ -9,6 +9,8 @@ production: false,
   endGameURL: `${baseURL}/game/end`,
   dequeueGameURL: `${baseURL}/game/dequeue`,
   cancelRandomQueueURL: `${baseURL}/game/cancel/random`,
+  loginURL: `${baseURL}/user/login`,
+  logoutURL: `${baseURL}/user/logout`,
 
   pusher: {
     key: '6f9207431644381a1fb9',

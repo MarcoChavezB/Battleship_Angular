@@ -58,7 +58,7 @@ export class EchoService {
   }
 
   public listentest(callback: (e: any) => void) {
-    this.echo?.channel('.*').listen('.*', (e: any) => {
+    this.echo?.channel('lol').listen('.lol', (e: any) => {
       callback(e);
     });
   }

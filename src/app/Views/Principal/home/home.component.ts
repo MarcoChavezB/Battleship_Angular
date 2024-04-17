@@ -3,12 +3,14 @@ import {EchoService} from "@services/EchoService/echo.service";
 import {LoaderTypeOneComponent} from "@components/Loaders/loader-type-one/loader-type-one.component";
 import {NgIf} from "@angular/common";
 import {GameInstanceService} from "@services/GameInstance/game-instance.service";
+import {RouterLink} from "@angular/router";
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
     LoaderTypeOneComponent,
-    NgIf
+    NgIf,
+    RouterLink
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'

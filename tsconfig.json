@@ -14,7 +14,10 @@
       ],
       "@components/*": [
         "./src/app/Components/*"
-      ]
+      ],
+      "@interceptors/*": [
+        "./src/app/Interceptors/*"
+      ],
     },
     "outDir": "./dist/out-tsc",
     "strict": true,

@@ -1,6 +1,7 @@
 import {ApplicationConfig, importProvidersFrom} from '@angular/core';
 import { provideRouter } from '@angular/router';
 import {HttpClientModule} from "@angular/common/http";
+import {authInterceptorProvider} from "@interceptors/Auth/auth.interceptor";
 
 
 import { routes } from './app.routes';
@@ -13,5 +14,6 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(),
     provideAnimations(),
     importProvidersFrom(HttpClientModule),
+    authInterceptorProvider
   ]
 };
