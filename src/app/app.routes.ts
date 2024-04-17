@@ -6,6 +6,8 @@ import { AuthComponent } from './Layouts/Auth/auth/auth.component';
 import { LoginComponent } from './Views/Auth/login/login.component';
 import { CodeComponent } from './Views/Auth/code/code.component';
 import { RegisterComponent } from './Views/Auth/register/register.component';
+import { JuegoComponent } from './Views/Principal/juego/juego.component';
+
 
 export const routes: Routes = [
   {
@@ -21,16 +23,16 @@ export const routes: Routes = [
             component: HomeComponent
           },
             {
-                path: 'auth',
+                path: '',
                 component: AuthComponent,
                 children: [
                     {
                         path: '',
-                        component: CodeComponent
+                        component: LoginComponent
                     },
                     {
-                        path: 'login',
-                        component: LoginComponent
+                        path: 'verify-code',
+                        component: CodeComponent
                     },
                     {
                         path: 'register',
@@ -45,6 +47,10 @@ export const routes: Routes = [
                     {
                         path: 'options',
                         component: HomeComponent
+                    },
+                    {
+                        path: 'game',
+                        component: JuegoComponent                        
                     }
                 ]
             }
